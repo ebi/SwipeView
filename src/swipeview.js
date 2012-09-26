@@ -222,8 +222,13 @@ var SwipeView = (function (window, document) {
 				this.masterPages[2].dataset.upcomingPageIndex = this.page;
 				this.masterPages[0].dataset.upcomingPageIndex = this.page == this.options.numberOfPages-1 ? 0 : this.page + 1;
 			}
-			
+
 			this.__flip();
+			// Hide the next page if we decided to disable looping
+			if (!this.options.loop) {
+				this.masterPages[0].style.visibility = '';
+				this.__checkPosition();
+			}
 		},
 		
 		next: function () {
